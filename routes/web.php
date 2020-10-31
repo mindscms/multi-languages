@@ -22,7 +22,7 @@ Route::get('/', function () {
 Route::get('/change-language/{locale}',     [LocaleController::class, 'switch'])->name('change.language');
 
 
-Route::middleware(['localized'])->prefix(app()->getLocale())->group(function (){
+Route::group(['middleware' => 'web'], function (){
 
     Route::get('/posts',                [PostController::class, 'index'])->name('posts.index');
     Route::get('/posts/{post}',         [PostController::class, 'show'])->name('posts.show');

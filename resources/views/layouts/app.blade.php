@@ -19,7 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @if (config('locales.languages')[app()->getLocale()]['rtl_support'] == 'rtl')
-        <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap-rtl.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap-rtl.css') }}">
     @endif
 </head>
 <body>
