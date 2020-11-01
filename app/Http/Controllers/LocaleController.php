@@ -21,57 +21,39 @@ class LocaleController extends Controller
         $this->previousRequest = $this->getPreviousRequest();
         $segments = $this->previousRequest->segments();
 
-        if (array_key_exists($locale, config('locales.languages'))) {
+        try {
+            if (array_key_exists($locale, config('locales.languages'))) {
 
-            App::setLocale($locale);
-            Lang::setLocale($locale);
-            setlocale(LC_TIME, config('locales.languages')[$locale]['unicode']);
-            Carbon::setLocale(config('locales.languages')[$locale]['lang']);
-            Session::put('locale', $locale);
+                App::setLocale($locale);
+                Lang::setLocale($locale);
+                setlocale(LC_TIME, config('locales.languages')[$locale]['unicode']);
+                Carbon::setLocale(config('locales.languages')[$locale]['lang']);
+                Session::put('locale', $locale);
 
-            if (config('locales.languages')[$locale]['rtl_support'] == 'rtl') {
-                Session::put('lang-rtl', true);
-            } else {
-                Session::forget('lang-rtl');
-            }
+                if (config('locales.languages')[$locale]['rtl_support'] == 'rtl') {
+                    Session::put('lang-rtl', true);
+                } else {
+                    Session::forget('lang-rtl');
+                }
 
-            if (isset($segments[1])) {
-                return $this->resolveModel(Post::class, $segments[1], $locale);
+                if (isset($segments[1])) {
+                    return $this->resolveModel(Post::class, $segments[1], $locale);
+                }
+
+                return redirect()->back();
+
             }
 
             return redirect()->back();
 
+        } catch (\Exception $exception) {
+            return redirect()->back();
         }
-
-        return redirect()->back();
     }
 
     protected function getPreviousRequest()
     {
         return request()->create(url()->previous());
-    }
-
-    protected function translateRouteSegments($segments)
-    {
-        $translatedSegments = collect();
-
-        foreach ($segments as $segment) {
-            if ($key = array_search($segment, Lang::get('routes'))) {
-                $translatedSegments->push(trans('routes.' . $key, [], $this->locale));
-            } else {
-                $translatedSegments->push($segment);
-            }
-        }
-        return $translatedSegments;
-    }
-
-    protected function buildNewRoute($newRoute)
-    {
-        $redirectUrl = implode('/', $newRoute->toArray());
-        $queryBag = $this->previousRequest->query();
-        $redirectUrl .= count($queryBag) ? '?' . http_build_query($queryBag) : '';
-
-        return $redirectUrl;
     }
 
     protected function resolveModel($modelClass, $slug, $locale)
