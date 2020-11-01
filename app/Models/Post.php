@@ -5,11 +5,12 @@ namespace App\Models;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Nicolaslopezj\Searchable\SearchableTrait;
 use Spatie\Translatable\HasTranslations;
 
 class Post extends Model
 {
-    use HasFactory, HasTranslations, Sluggable;
+    use HasFactory, HasTranslations, Sluggable, SearchableTrait;
 
     protected $guarded = [];
     public $translatable = ['title', 'slug', 'body'];
@@ -28,6 +29,13 @@ class Post extends Model
             ]
         ];
     }
+
+    protected $searchable = [
+        'columns' => [
+            'title' => 10,
+            'body' => 10,
+        ]
+    ];
 
     protected function asJson($value)
     {
