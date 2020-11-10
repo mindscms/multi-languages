@@ -9,11 +9,14 @@
     "license": "MIT",
     "require": {
         "php": "^7.3",
+        "cviebrock/eloquent-sluggable": "^8.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.0",
-        "laravel/tinker": "^2.0"
+        "laravel/tinker": "^2.0",
+        "nicolaslopezj/searchable": "^1.13",
+        "spatie/laravel-translatable": "^4.5"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
