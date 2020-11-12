@@ -15,6 +15,21 @@ class PostSeeder extends Seeder
     public function run()
     {
 
+        /*
+        $quots01['title'] = ['en' => 'Hello', 'ar' => 'مرحبا', 'ca' => 'Hello'];
+        $quots01['body'] = ['en' => 'Hello', 'ar' => 'مرحبا', 'ca' => 'Hello'];
+
+        $quots02['title'] = ['en' => 'Hello', 'ar' => 'مرحبا', 'ca' => 'Hello'];
+        $quots02['body'] = ['en' => 'Hello', 'ar' => 'مرحبا', 'ca' => 'Hello'];
+
+        $quots03['title'] = ['en' => 'Hello', 'ar' => 'مرحبا', 'ca' => 'Hello'];
+        $quots03['body'] = ['en' => 'Hello', 'ar' => 'مرحبا', 'ca' => 'Hello'];
+
+        Post::create($quots01);
+        Post::create($quots02);
+        Post::create($quots03);
+        */
+
         $quots01['title'] = [
             'en' => 'It’s not about ideas. It’s about making ideas happen.',
             'ar' => 'الأمر لا يتعلق بالافكار إنه حول جعل الأفكار تحدث.',
@@ -181,6 +196,17 @@ class PostSeeder extends Seeder
             'ca' => 'Alguien está sentado a la sombra hoy porque alguien plantó un árbol hace mucho tiempo.',
         ];
 
+        $quots16['title'] = [
+            'en' => 'Someone’s sitting in the shade today because someone planted a tree a long time ago.',
+            'ar' => 'شخص ما يجلس في الظل اليوم لأن أحدهم زرع شجرة منذ زمن بعيد',
+            'ca' => 'Alguien está sentado a la sombra hoy porque alguien plantó un árbol hace mucho tiempo.',
+        ];
+        $quots16['body'] = [
+            'en' => 'Someone’s sitting in the shade today because someone planted a tree a long time ago.',
+            'ar' => 'شخص ما يجلس في الظل اليوم لأن أحدهم زرع شجرة منذ زمن بعيد',
+            'ca' => 'Alguien está sentado a la sombra hoy porque alguien plantó un árbol hace mucho tiempo.',
+        ];
+
         Post::create($quots01);
         Post::create($quots02);
         Post::create($quots03);
@@ -196,6 +222,7 @@ class PostSeeder extends Seeder
         Post::create($quots13);
         Post::create($quots14);
         Post::create($quots15);
+        Post::create($quots16);
 
 
     }

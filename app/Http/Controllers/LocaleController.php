@@ -72,6 +72,11 @@ class LocaleController extends Controller
             }
             abort(404);
         }
+
+        // dd($slug, $model->slug);
+        if ($slug === $model->slug) {
+            return redirect()->back();
+        }
         return $model;
     }
 
