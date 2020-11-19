@@ -21,6 +21,8 @@
     @if (config('locales.languages')[app()->getLocale()]['rtl_support'] == 'rtl')
         <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap-rtl.css') }}">
     @endif
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 <body>
 <div id="app">
@@ -63,10 +65,10 @@
     <main class="py-4">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-8">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                <div class="col-md-12">
+                    @if (session('message'))
+                        <div class="alert alert-{{ session('alert-type') }}" role="alert">
+                            {{ session('message') }}
                         </div>
                     @endif
                 </div>
