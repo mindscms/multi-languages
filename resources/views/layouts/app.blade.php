@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ config('locales.languages')[app()->getLocale()]['rtl_support'] }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,6 +18,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @if (config('locales.languages')[app()->getLocale()]['rtl_support'] == 'rtl')
+        <link rel="stylesheet" href="{{ asset('frontend/css/bootstrap-rtl.css') }}">
+    @endif
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 <body>
 <div id="app">
@@ -38,7 +43,20 @@
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
 
+                        <a href="#" class="nav-link dropdown-toggle" id="languagesDropdown" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                            {{ config('locales.languages')[app()->getLocale()]['name'] }} <span class="caret"></span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="languagesDropdown">
+                            @foreach(config('locales.languages') as $key => $val)
+                                @if ($key != app()->getLocale())
+                                    <a href="{{ route('change.language', $key) }}" class="dropdown-item">{{ $val['name'] }}</a>
+                                @endif
+                            @endforeach
+                        </div>
+
+                    </li>
                 </ul>
             </div>
         </div>
@@ -47,10 +65,10 @@
     <main class="py-4">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-8">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                <div class="col-md-12">
+                    @if (session('message'))
+                        <div class="alert alert-{{ session('alert-type') }}" role="alert">
+                            {{ session('message') }}
                         </div>
                     @endif
                 </div>

@@ -12,9 +12,9 @@ return [
     |
     */
 
-    'reset'     => 'Het wachtwoord van uw account is gewijzigd.',
-    'sent'      => 'We hebben een e-mail verstuurd met instructies om een nieuw wachtwoord in te stellen.',
-    'throttled' => 'Gelieve even te wachten voor u het opnieuw probeert.',
-    'token'     => 'Dit wachtwoordhersteltoken is niet geldig.',
-    'user'      => 'Geen gebruiker bekend met het e-mailadres.',
+    'reset'     => 'La contrasenya s\'ha restablert!',
+    'sent'      => 'Li hem enviat un correu electrònic amb un enllaç per a reiniciar la teva contrasenya!',
+    'throttled' => 'Si us plau, esperi abans de tornar-ho a intentar.',
+    'token'     => 'Aquest token de recuperació de contrasenya és invàlid.',
+    'user'      => 'No existeix cap usuari amb aquest correu.',
 ];
